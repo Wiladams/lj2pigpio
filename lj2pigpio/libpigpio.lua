@@ -436,77 +436,54 @@ static const int PI_FROM_END     =2;
 ffi.cdef[[
 
 int gpioInitialise(void);
-
 void gpioTerminate(void);
-
 int gpioSetMode(unsigned gpio, unsigned mode);
-
 int gpioGetMode(unsigned gpio);
-
 int gpioSetPullUpDown(unsigned gpio, unsigned pud);
-
 int gpioRead (unsigned gpio);
-
 int gpioWrite(unsigned gpio, unsigned level);
 ]]
 
 ffi.cdef[[
 int gpioPWM(unsigned user_gpio, unsigned dutycycle);
-
 int gpioGetPWMdutycycle(unsigned user_gpio);
-
 int gpioSetPWMrange(unsigned user_gpio, unsigned range);
-
 int gpioGetPWMrange(unsigned user_gpio);
-
 int gpioGetPWMrealRange(unsigned user_gpio);
-
-
 int gpioSetPWMfrequency(unsigned user_gpio, unsigned frequency);
-
-
-
 int gpioGetPWMfrequency(unsigned user_gpio);
 ]]
 
 ffi.cdef[[
 int gpioServo(unsigned user_gpio, unsigned pulsewidth);
-
 int gpioGetServoPulsewidth(unsigned user_gpio);
-
 int gpioSetAlertFunc(unsigned user_gpio, gpioAlertFunc_t f);
-
 int gpioSetAlertFuncEx(
    unsigned user_gpio, gpioAlertFuncEx_t f, void *userdata);
 
 int gpioSetISRFunc(
    unsigned user_gpio, unsigned edge, int timeout, gpioISRFunc_t f);
-
+   
 int gpioSetISRFuncEx(
    unsigned user_gpio,
    unsigned edge,
    int timeout,
    gpioISRFuncEx_t f,
    void *userdata);
-
-int gpioNotifyOpen(void);
-
-int gpioNotifyOpenWithSize(int bufSize);
-
-int gpioNotifyBegin(unsigned handle, uint32_t bits);
-
-int gpioNotifyPause(unsigned handle);
-
-int gpioNotifyClose(unsigned handle);
-
-int gpioWaveClear(void);
-
-int gpioWaveAddNew(void);
-
-int gpioWaveAddGeneric(unsigned numPulses, gpioPulse_t *pulses);
 ]]
 
 ffi.cdef[[
+int gpioNotifyOpen(void);
+int gpioNotifyOpenWithSize(int bufSize);
+int gpioNotifyBegin(unsigned handle, uint32_t bits);
+int gpioNotifyPause(unsigned handle);
+int gpioNotifyClose(unsigned handle);
+]]
+
+ffi.cdef[[
+int gpioWaveClear(void);
+int gpioWaveAddNew(void);
+int gpioWaveAddGeneric(unsigned numPulses, gpioPulse_t *pulses);
 
 int gpioWaveAddSerial
    (unsigned user_gpio,
@@ -517,49 +494,28 @@ int gpioWaveAddSerial
     unsigned numBytes,
     char     *str);
 
-
-
-
 int gpioWaveCreate(void);
-
 int gpioWaveDelete(unsigned wave_id);
-
 int gpioWaveTxSend(unsigned wave_id, unsigned wave_mode);
-
 int gpioWaveChain(char *buf, unsigned bufSize);
-
 int gpioWaveTxAt(void);
-
 int gpioWaveTxBusy(void);
-
 int gpioWaveTxStop(void);
-
 int gpioWaveGetMicros(void);
-
 int gpioWaveGetHighMicros(void);
-
 int gpioWaveGetMaxMicros(void);
-
 int gpioWaveGetPulses(void);
-
 int gpioWaveGetHighPulses(void);
-
 int gpioWaveGetMaxPulses(void);
-
 int gpioWaveGetCbs(void);
-
 int gpioWaveGetHighCbs(void);
-
 int gpioWaveGetMaxCbs(void);
 ]]
 
 ffi.cdef[[
 int gpioSerialReadOpen(unsigned user_gpio, unsigned baud, unsigned data_bits);
-
 int gpioSerialReadInvert(unsigned user_gpio, unsigned invert);
-
 int gpioSerialRead(unsigned user_gpio, void *buf, size_t bufSize);
-
 int gpioSerialReadClose(unsigned user_gpio);
 ]]
 
@@ -616,9 +572,7 @@ int i2cZip(
 
 ffi.cdef[[
 int bbI2COpen(unsigned SDA, unsigned SCL, unsigned baud);
-
 int bbI2CClose(unsigned SDA);
-
 int bbI2CZip(
    unsigned SDA,
    char    *inBuf,
@@ -629,48 +583,32 @@ int bbI2CZip(
 
 ffi.cdef[[
 int spiOpen(unsigned spiChan, unsigned baud, unsigned spiFlags);
-
 int spiClose(unsigned handle);
-
 int spiRead(unsigned handle, char *buf, unsigned count);
-
 int spiWrite(unsigned handle, char *buf, unsigned count);
-
 int spiXfer(unsigned handle, char *txBuf, char *rxBuf, unsigned count);
 ]]
 
 ffi.cdef[[
 int serOpen(char *sertty, unsigned baud, unsigned serFlags);
-
 int serClose(unsigned handle);
-
 int serWriteByte(unsigned handle, unsigned bVal);
-
 int serReadByte(unsigned handle);
-
 int serWrite(unsigned handle, char *buf, unsigned count);
-
 int serRead(unsigned handle, char *buf, unsigned count);
-
 int serDataAvailable(unsigned handle);
 ]]
 
 ffi.cdef[[
 int gpioTrigger(unsigned user_gpio, unsigned pulseLen, unsigned level);
-
 int gpioSetWatchdog(unsigned user_gpio, unsigned timeout);
-
 int gpioNoiseFilter(unsigned user_gpio, unsigned steady, unsigned active);
-
 int gpioGlitchFilter(unsigned user_gpio, unsigned steady);
-
 int gpioSetGetSamplesFunc(gpioGetSamplesFunc_t f, uint32_t bits);
-
 int gpioSetGetSamplesFuncEx(
    gpioGetSamplesFuncEx_t f, uint32_t bits, void *userdata);
 
 int gpioSetTimerFunc(unsigned timer, unsigned millis, gpioTimerFunc_t f);
-
 int gpioSetTimerFuncEx(
    unsigned timer, unsigned millis, gpioTimerFuncEx_t f, void *userdata);
 ]]
@@ -680,69 +618,40 @@ int gpioSetTimerFuncEx(
 
 ffi.cdef[[
 int gpioStoreScript(char *script);
-
 int gpioRunScript(unsigned script_id, unsigned numPar, uint32_t *param);
-
-
 int gpioScriptStatus(unsigned script_id, uint32_t *param);
-
 int gpioStopScript(unsigned script_id);
-
-
 int gpioDeleteScript(unsigned script_id);
-
 int gpioSetSignalFunc(unsigned signum, gpioSignalFunc_t f);
-
 int gpioSetSignalFuncEx(
    unsigned signum, gpioSignalFuncEx_t f, void *userdata);
 
 uint32_t gpioRead_Bits_0_31(void);
-
 uint32_t gpioRead_Bits_32_53(void);
-
 int gpioWrite_Bits_0_31_Clear(uint32_t bits);
-
 int gpioWrite_Bits_32_53_Clear(uint32_t bits);
-
 int gpioWrite_Bits_0_31_Set(uint32_t bits);
-
 int gpioWrite_Bits_32_53_Set(uint32_t bits);
-
 int gpioHardwareClock(unsigned gpio, unsigned clkfreq);
-
 int gpioHardwarePWM(unsigned gpio, unsigned PWMfreq, unsigned PWMduty);
-
 int gpioTime(unsigned timetype, int *seconds, int *micros);
-
 int gpioSleep(unsigned timetype, int seconds, int micros);
-
 uint32_t gpioDelay(uint32_t micros);
-
 uint32_t gpioTick(void);
-
 unsigned gpioHardwareRevision(void);
-
 unsigned gpioVersion(void);
-
 int gpioGetPad(unsigned pad);
-
 int gpioSetPad(unsigned pad, unsigned padStrength);
 ]]
 
 
 ffi.cdef[[
 int shell(char *scriptName, char *scriptString);
-
 int fileOpen(char *file, unsigned mode);
-
 int fileClose(unsigned handle);
-
 int fileWrite(unsigned handle, char *buf, unsigned count);
-
 int fileRead(unsigned handle, char *buf, unsigned count);
-
 int fileSeek(unsigned handle, int32_t seekOffset, int seekFrom);
-
 int fileList(char *fpat,  char *buf, unsigned count);
 ]]
 
@@ -793,31 +702,18 @@ int rawWaveAddSPI(
    unsigned spiBits);
 
 int rawWaveAddGeneric(unsigned numPulses, rawWave_t *pulses);
-
 unsigned rawWaveCB(void);
-
 rawCbs_t *rawWaveCBAdr(int cbNum);
-
 uint32_t rawWaveGetOut(int pos);
-
 void rawWaveSetOut(int pos, uint32_t lVal);
-
 uint32_t rawWaveGetIn(int pos);
-
 void rawWaveSetIn(int pos, uint32_t lVal);
-
 rawWaveInfo_t rawWaveInfo(int wave_id);
-
 int getBitInBytes(int bitPos, char *buf, int numBits);
-
 void putBitInBytes(int bitPos, char *buf, int bit);
-
 double time_time(void);
-
 void time_sleep(double seconds);
-
 void rawDumpWave(void);
-
 void rawDumpScript(unsigned script_id);
 ]]
 
