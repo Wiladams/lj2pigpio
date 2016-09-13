@@ -1080,4 +1080,4 @@ static const int PI_DEFAULT_CFG_INTERNALS           = 0;
 ]]
 
 
---return ffi.load("pigpio")
+return ffi.load("pigpio")
